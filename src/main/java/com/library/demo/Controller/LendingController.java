@@ -1,57 +1,45 @@
 package com.library.demo.Controller;
 
-import com.library.demo.Model.BookModel;
+import com.library.demo.Model.LendingModel;
 import com.library.demo.Model.UserModel;
+import com.library.demo.Service.LendingServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import com.library.demo.Model.LendingModel;
-import com.library.demo.Service.LendingServiceImpl;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class LendingController {
-	
-	@Autowired
-	LendingServiceImpl ls;
 
-	@PostMapping("/borrowBook")
-	public LendingModel borrowBook(@RequestBody LendingModel lend){
-		return ls.addBorrowBook(lend);
-	}
+    @Autowired
+    private LendingServiceImpl lendingService;
 
-	@GetMapping("/getBooksBorrowed")
-	public List<String> getBooksBorrowed(){
-		List<String> books = ls.getBooksBorrowed();
-		return books;
-	}
+    @PostMapping("/borrowBook")
+    public LendingModel borrowBook(@RequestBody LendingModel lend) {
+        return lendingService.addBorrowBook(lend);
+    }
 
-	@GetMapping("/getBooksBorrowedByUser/{uid}")
-	public List<BookModel> getBooksBorrowedByUser(@PathVariable Integer uid){
-		List<BookModel> books = ls.getBooksBorrowedByUser(uid);
-		return books;
-	}
+    @GetMapping("/getBooksBorrowed")
+    public List<String> getBooksBorrowed() {
+        return lendingService.getBooksBorrowed();
+    }
 
-	@GetMapping("/getUsersBorrowedBook/{bid}")
-	public List<UserModel> getUsersBorrowedBook(@PathVariable Integer bid){
-		List<UserModel> users = ls.getUsersBorrowedBook(bid);
-		return users;
-	}
+    @GetMapping("/getBooksBorrowedByUser/{uid}")
+    public List<LendingModel> getBooksBorrowedByUser(@PathVariable Integer uid) {  // Updated return type
+        return lendingService.getBooksBorrowedByUser(uid);
+    }
 
-//	@DeleteMapping("/returnBook/{bookname}")
-//	public ResponseEntity<?> returnBook(@PathVariable String bookname) {
-//		ls.returnBook(bookname);
-//		return ResponseEntity.ok("Book Returned");
-//	}
-	
-	@DeleteMapping("/returnBook/{bookname}")
-	public ResponseEntity<String> returnBook(@PathVariable String bookname) {
-	    ls.returnBook(bookname);
-	    
-	    // Return the response as a JSON-formatted string
-	    return ResponseEntity.ok("{\"message\": \"Book Returned\"}");
-	}
+    @GetMapping("/getUsersBorrowedBook/{bid}")
+    public List<UserModel> getUsersBorrowedBook(@PathVariable Integer bid) {
+        return lendingService.getUsersBorrowedBook(bid);
+    }
+
+    @DeleteMapping("/returnBook/{bookname}")
+    public ResponseEntity<String> returnBook(@PathVariable String bookname) {
+        lendingService.returnBook(bookname);
+        return ResponseEntity.ok("{\"message\": \"Book Returned\"}");
+    }
 }
