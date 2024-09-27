@@ -25,12 +25,7 @@ public class AuthController {
         return authService.login(user);
     }
     
-//    @PostMapping("/login")
-//    public UserModel login(@RequestBody UserModel user) {
-//        UserModel loggedInUser = authService.login(user);
-//        System.out.println("Logged in user: " + loggedInUser); // Log the user
-//        return loggedInUser; // Return user model including ID
-//    }
+
 
     @PostMapping("/register")
     public UserModel register(@RequestBody UserModel user) {
@@ -42,4 +37,11 @@ public class AuthController {
     public String username(@PathVariable int id) {
         return authService.getUsernameById(id);
     }
+    
+//  @PostMapping("/login")
+//  public UserModel login(@RequestBody UserModel user) {
+//      UserModel loggedInUser = authService.login(user);
+//      System.out.println("Logged in user: " + loggedInUser); // Log the user
+//      return loggedInUser; // Return user model including ID
+//  }
 }
