@@ -1,103 +1,128 @@
 package com.library.demo.Model;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import lombok.Getter;
-import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
 public class UserModel {
 
-	@Id
+    @Id
     @GeneratedValue
-	@Column
+    @Column
     private int id;
-	@Column  
-	private String user_name;
-	@Column
+
+    @Column
+    private String user_name;
+
+    @Column
     private String user_email;
-	@Column
+
+    @Column
     private String user_mobile;
-	@Column
+
+    @Column
     private String user_password;
-	@Column
-	private String role;
 
-	public UserModel() {
-	}
+    @Column
+    private String role;
 
-	public UserModel(int id, String user_name, String user_email, String user_mobile, String user_password, String role) {
-		this.id = id;
-		this.user_name = user_name;
-		this.user_email = user_email;
-		this.user_mobile = user_mobile;
-		this.user_password = user_password;
-		this.role = role;
-	}
+    // Token for password reset
+    @Column
+    private String resetToken;
 
-	@Override
-	public String toString() {
-		return "UserModel{" +
-				"id=" + id +
-				", user_name='" + user_name + '\'' +
-				", user_email='" + user_email + '\'' +
-				", user_mobile='" + user_mobile + '\'' +
-				", user_password='" + user_password + '\'' +
-				", role='" + role + '\'' +
-				'}';
-	}
+    // Expiry date for the reset token
+    @Column
+    private LocalDateTime resetTokenExpiry;
 
-	public int getId() {
-		return id;
-	}
+    public UserModel() {}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public UserModel(int id, String user_name, String user_email, String user_mobile, String user_password, String role) {
+        this.id = id;
+        this.user_name = user_name;
+        this.user_email = user_email;
+        this.user_mobile = user_mobile;
+        this.user_password = user_password;
+        this.role = role;
+    }
 
-	public String getUser_name() {
-		return user_name;
-	}
+    @Override
+    public String toString() {
+        return "UserModel{" +
+                "id=" + id +
+                ", user_name='" + user_name + '\'' +
+                ", user_email='" + user_email + '\'' +
+                ", user_mobile='" + user_mobile + '\'' +
+                ", user_password='" + user_password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
-	}
+    // Getters and Setters
 
-	public String getUser_email() {
-		return user_email;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setUser_email(String user_email) {
-		this.user_email = user_email;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public String getUser_mobile() {
-		return user_mobile;
-	}
+    public String getUser_name() {
+        return user_name;
+    }
 
-	public void setUser_mobile(String user_mobile) {
-		this.user_mobile = user_mobile;
-	}
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
 
-	public String getUser_password() {
-		return user_password;
-	}
+    public String getUser_email() {
+        return user_email;
+    }
 
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
-	}
+    public void setUser_email(String user_email) {
+        this.user_email = user_email;
+    }
 
-	public String getRole() {
-		return role;
-	}
+    public String getUser_mobile() {
+        return user_mobile;
+    }
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+    public void setUser_mobile(String user_mobile) {
+        this.user_mobile = user_mobile;
+    }
+
+    public String getUser_password() {
+        return user_password;
+    }
+
+    public void setUser_password(String user_password) {
+        this.user_password = user_password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getResetTokenExpiry() {
+        return resetTokenExpiry;
+    }
+
+    public void setResetTokenExpiry(LocalDateTime resetTokenExpiry) {
+        this.resetTokenExpiry = resetTokenExpiry;
+    }
 }
