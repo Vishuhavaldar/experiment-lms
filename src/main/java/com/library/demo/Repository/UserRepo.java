@@ -15,6 +15,9 @@ public interface UserRepo extends JpaRepository<UserModel, Integer> {
     public UserModel findByResetToken(String resetToken);
 
     // Optional: If you need case-insensitive reset token lookup
-    @Query("select u from UserModel u where lower(u.resetToken) = lower(?1)")
-    public UserModel findUserByResetTokenIgnoreCase(String resetToken);
+//    @Query("select u from UserModel u where lower(u.resetToken) = lower(?1)")
+//    public UserModel findUserByResetTokenIgnoreCase(String resetToken);
+    @Query("SELECT u FROM UserModel u WHERE u.resetToken = ?1 AND u.user_email = ?2")
+    UserModel findByResetTokenAndEmail(String resetToken, String email);
+
 }

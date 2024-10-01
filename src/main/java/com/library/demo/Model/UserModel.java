@@ -29,13 +29,23 @@ public class UserModel {
     @Column
     private String role;
 
-    // Token for password reset
+    // Token for password reset via link
     @Column
     private String resetToken;
 
     // Expiry date for the reset token
     @Column
     private LocalDateTime resetTokenExpiry;
+
+    // OTP for password reset via OTP
+    @Column
+    private String otp;
+
+    // Expiry time for the OTP
+    @Column
+    private LocalDateTime otpExpiry;
+
+    // Constructors, getters, and setters
 
     public UserModel() {}
 
@@ -57,11 +67,14 @@ public class UserModel {
                 ", user_mobile='" + user_mobile + '\'' +
                 ", user_password='" + user_password + '\'' +
                 ", role='" + role + '\'' +
+                ", resetToken='" + resetToken + '\'' +
+                ", resetTokenExpiry=" + resetTokenExpiry +
+                ", otp='" + otp + '\'' +
+                ", otpExpiry=" + otpExpiry +
                 '}';
     }
 
-    // Getters and Setters
-
+    // Getters and setters
     public int getId() {
         return id;
     }
@@ -124,5 +137,21 @@ public class UserModel {
 
     public void setResetTokenExpiry(LocalDateTime resetTokenExpiry) {
         this.resetTokenExpiry = resetTokenExpiry;
+    }
+
+    public String getOtp() {
+        return otp;
+    }
+
+    public void setOtp(String otp) {
+        this.otp = otp;
+    }
+
+    public LocalDateTime getOtpExpiry() {
+        return otpExpiry;
+    }
+
+    public void setOtpExpiry(LocalDateTime otpExpiry) {
+        this.otpExpiry = otpExpiry;
     }
 }
